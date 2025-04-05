@@ -1,1 +1,93 @@
-Test run of system prompt
+Will be using state channels for real-time communication with a shard, where each shard will have a state channel to handle real-time communication, state synchronization, and processing within the shard. They are creating a state channel for each shard to manage player state changes and reduce communication overhead. They will use the `state_channel` crate to manage off-chain transactions and interactions, reducing on-chain transaction load. There may be dedicated team state channels for intra-team communication and combat. The state channel could hash player actions into a Merkle tree and share relevant branches. Transitioning between state channels as players move between areas might introduce delays, especially if off-chain settlement must occur before players can open a new channel in the next shard.
+
+Is using Rust Bevy and the Substrate crate for blockchain integration in their multiplayer game.
+
+Will be using Merkle trees for all states in the game shard and for individual player states. They are implementing a protocol for players to submit actions and state changes to the channel with signing mechanisms for authenticity. They are also focusing on local validation, signature verification, and consensus mechanisms for state changes.
+
+Is considering an architecture where only player nodes are used for shard management, without dedicated servers.
+
+Game's blockchain would only need to store individual game sessions among players, focusing more on truth and security than on full state history.
+
+Is defining the roles of a shard in their multiplayer game as follows: Prepare Initial Shard Game State, Collect All Actions into One List, Check Game Rules Locally, Calculate New Game State, Broadcast Proposal to Everyone, Receive Approvals of Proposed State, Send Final Game State (Merkle Root), Commit to Side Chain.
+
+Is considering two approaches for shard management in their multiplayer game: 1. **Single Leader Node**: A dedicated leader node is responsible for managing the shard roles. 2. **Distributed Roles**: A set of roles distributed among players within the shard, with each player handling specific responsibilities.
+
+Is writing a blurb for a recruiter for a position as a Data Ops Engineer.
+
+Has taken the following relevant courses: Algorithms and Data Structures, Machine Learning, Theoretical Foundations of Software Engineering, Networking: Principles, Protocols, and Architecture, Web Technologies, Database Management Systems.
+
+Has the following professional experience: 
+
+- Software Engineering Intern at Price Waterhouse Cooper (May 2022 - Apr 2023) where they engineered client-facing platforms, implemented front-end interfaces with TypeScript and Angular, built back-end functionality in C#, and maintained DevOps pipelines.
+- Co-op Software Developer at Manulife (Summer 2021) where they developed a website using ASP.NET MVC, optimized an MS SQL database, and worked in an agile environment.
+- Engineering Orientation Leader (Soph) at Western Orientation Program (Sep 2020 - Apr 2022) where they mentored first-year students and organized review sessions.
+
+Projects include: 
+
+- Capstone Project: Centralized Platform for Nightlife Experiences using React Native, Express.js, and Firebase.
+- NBA MVP Prediction using machine learning with scikit-learn and TensorFlow.
+
+Skills include: React, Angular, React Native, TypeScript, JavaScript, C#, ASP.NET, Java, SQL, Python, Git, Docker, Kubernetes, GCP, Machine Learning, JavaFX, HTML, CSS, Unity, JIRA, and Azure.
+
+Is creating the game in Bevy and designing modular game states for better code organization, such as for the Player, including states like Idle, Planning Turn, Executing Turn, Casting Spell, Moving, Interacting, Waiting, Dead, Respawn, Trading, Transferring, and Paused. Additionally, user is creating other game states, including Environment, Battle, Deck, Player Deck Management, Combo, Visual Effect, Audio Effect, Game, Menu State, and Tile, related to their game's modular design.
+
+Game will include checkpointing, which involves recording game state and events on the blockchain, creating periodic snapshots of shard states, and committing these checkpoints to sidechains. This checkpointing will provide on-chain finality and secure, immutable records of game progress with low latency. If a player disputes a state, they can initiate a challenge, and the network will verify the state using the last checkpoint. Periodically, checkpoints will be anchored to the sidechain to ensure the game state is securely recorded for future verification.
+
+Prefers cover letter responses to be personable, confident but not too arrogant, and have a fluid, engaging read.
+
+Is trying to understand the organization hierarchy of file structuring with `mod` and `plugin` in a Bevy game.
+
+Is a passionate Software Engineering graduate student, dedicated to leveraging technology for innovative solutions that drive positive change, and is committed to tackling complex problems and collaborating on impactful projects.
+
+Is working on a 2D pixel art multiplayer game with the following elements: PvP/Co-op for up to 8 players, fast-paced real-time planning with turn-based execution, magic/wizards theme, player color selection that affects abilities, role specialization (healer, defense, tank, offense), a spell deck system, movement and spell casting during turns, spell synergies and combo mechanics, tile-based maps, environmental interactions where mana can be imbued into objects or environments, artifacts with different values for players, and scrolls with predefined sequences that provide benefits.
+
+Game will include the following additional features:
+
+- **Exploration Mode**: Players move freely in the overworld, with constant checks for battle zones and enemy proximity.
+- **Ambush System**: Enemies or players can initiate ambushes when close and undetected.
+- **Battle Transition**: Switching to a tile-based battle map for turn-based combat.
+- **Random Encounters**: Battles triggered randomly in designated zones.
+
+Is seeking to structure their Bevy game files in a modular way to handle the 'Game,' 'P2P Network,' and 'Blockchain' aspects, aiming for expansion and maintainability.
+
+Is exploring the following crates for their game in Rust:
+
+- **Metrics crate**: For tracking performance indicators such as frame rate, sync times, and network latency.
+- **Rayon crate**: For data parallelism, useful for parallelizing operations like Merkle tree generation and game state processing.
+- **Quinn crate**: A Rust implementation of the QUIC protocol, which may be explored for additional customization or integration with the networking stack.
+- **Bevy_tiled plugin**: For loading and managing tile maps.
+- **Bevy Input**: For customizable input handling for player turns and spell selections.
+- **Bevy Pixel Art/2D Sprites**: For pixel art rendering and animations.
+
+Is also looking for crates related to:
+
+- Blockchain integration
+- Byzantine Fault Tolerance (BFT)
+- Zero-Knowledge Proofs (ZKP)
+- State Channels
+- Off-chain computation
+- Other game-specific needs.
+
+Wants to create a completely separate custom blockchain for their game, independent from Ethereum.
+
+Is creating a React Native app using Expo for prototyping.
+
+Is creating a dev portfolio with Next.js, Chakra UI, TypeScript, ESLint, and Prettier.
+
+Is considering using either `react-native-paper` or `@rneui/themed` for Material-UI-like components in their project.
+
+Is looking for an LLM that can run on their computer alongside other apps, acting almost as a chat app or assistant.
+
+The game is being built in Rust and Bevy.
+
+Will be experimenting with data compression of ECS (Entity Component System) using Lz4 compression.
+
+Is building a sophisticated, decentralized, real-time co-op multiplayer game that involves: real-time co-op multiplayer gameplay with up to 8 players, P2P networking for direct player connections, blockchain integration for game states, referrals, and state channels, state channels for world sharding to reduce syncing complexity, Merkle trees and parallel processing for fast and secure synchronization of game states, PBFT for consensus, and a networking stack using libp2p QUIC with Swarm and Tokio, utilizing UDP for fast data transmission. User will be experimenting with the following Rust libraries for building out networking for the game: Libp2p, UDP, QUIC, Tokio, Swarm.
+
+Will be using Rayon and the meerkly Rust package for Merkle tree processing in the game.
+
+Will be doing periodic checkpointing onto the side chain for the game.
+
+Wants to make a 2D pixel game.
+
+Wants to create modular components in the game where any game component can attach an 'observer' that will be added to the game state and sent to the blockchain. This observer acts as an attachable pipeline for streamlining game updates.
